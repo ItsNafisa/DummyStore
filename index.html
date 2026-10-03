@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- <link rel="stylesheet" href="css/all.min.css"> -->
+       <link rel="stylesheet" href="style.css">
+    <title>Dummy Store</title>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                🛍️ DummyStore
+            </div>
+            <div class="cart">
+                🛒 cart (0)
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+       <!-- search and sort -->
+            <div class="container">
+                <form class="search">
+                    <input type="text" placeholder="🔍 Search for a product..." id="search-value" onkeyup="searchProduct(this.value)">
+                </form>
+                <form class="sort" >
+                    <select onchange="handleSort(this.value)">
+                     <option value="">Default Sorting</option>
+        
+        <!-- Price -->
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        
+        <!-- Rating -->
+        <option value="rating-desc">Top Rated (Highest First)</option>
+        <option value="rating-asc">Lowest Rated</option>
+        
+        <!-- Title / Name -->
+        <option value="title-asc">Title: A to Z</option>
+        <option value="title-desc">Title: Z to A</option>
+        
+        <!-- Discount -->
+        <option value="discountPercentage-desc">Highest Discount</option>
+        
+        <!-- Brand -->
+        <option value="brand-asc">Brand: A to Z</option>
+
+        <!-- Stock -->
+        <option value="stock-desc">Highest Stock</option>
+                    </select>
+                </form>
+            </div>
+       
+            <!-- categories -->
+            <div class="categories">
+                <div class="container">
+                     <ul class="category-lists">
+                <li class="active">ALL</li>
+                    <li>smartphones</li>
+                        <li>laptops</li>
+                            <li>fragrances</li>
+                                <li>skincare</li>
+                                    <li>groceries</li>
+             </ul>
+                </div>
+            </div>
+
+            <!-- products -->
+             <div class="products">
+                <div class="container">
+                    <div class="boxs">
+<div class="box">
+    <img src="imgs/img4.jpg">
+    <div class="brand-and-rate">
+        <p class="brand">Apple</p>
+        <p class="rate">⭐ 3.4</p>
+    </div>
+     <p class="name">Perfume Oil</p>
+   <div class="text">
+      <p class="price">$12</p>
+    <p class="stock"> ● instock</p>
+   
+   </div>
+      <button>View Details</button>
+</div>
+<div class="box">
+    <img src="imgs/img4.jpg">
+    <div class="brand-and-rate">
+        <p class="brand">Apple</p>
+        <p class="rate">⭐ 3.4</p>
+    </div>
+     <p class="name">Perfume Oil</p>
+   <div class="text">
+      <p class="price">$12</p>
+    <p class="stock"> ● instock</p>
+   
+   </div>
+      <button>View Details</button>
+</div>
+<div class="box">
+    <img src="imgs/img4.jpg">
+    <div class="brand-and-rate">
+        <p class="brand">Apple</p>
+        <p class="rate">⭐ 3.4</p>
+    </div>
+     <p class="name">Perfume Oil</p>
+   <div class="text">
+      <p class="price">$12</p>
+    <p class="stock"> ● instock</p>
+   
+   </div>
+      <button>View Details</button>
+</div>
+<div class="box">
+    <img src="imgs/img4.jpg">
+    <div class="brand-and-rate">
+        <p class="brand">Apple</p>
+        <p class="rate">⭐ 3.4</p>
+    </div>
+     <p class="name">Perfume Oil</p>
+   <div class="text">
+      <p class="price">$12</p>
+    <p class="stock"> ● instock</p>
+   
+   </div>
+      <button>View Details</button>
+</div>
+<div class="box">
+    <img src="imgs/img4.jpg">
+    <div class="brand-and-rate">
+        <p class="brand">Apple</p>
+        <p class="rate">⭐ 3.4</p>
+    </div>
+     <p class="name">Perfume Oil</p>
+   <div class="text">
+      <p class="price">$12</p>
+    <p class="stock"> ● instock</p>
+   
+   </div>
+      <button>View Details</button>
+</div>
+<div class="box">
+    <img src="imgs/img4.jpg">
+    <div class="brand-and-rate">
+        <p class="brand">Apple</p>
+        <p class="rate">⭐ 3.4</p>
+    </div>
+     <p class="name">Perfume Oil</p>
+   <div class="text">
+      <p class="price">$12</p>
+    <p class="stock"> ● instock</p>
+   
+   </div>
+      <button>View Details</button>
+</div>
+<div class="box">
+    <img src="imgs/img4.jpg">
+    <div class="brand-and-rate">
+        <p class="brand">Apple</p>
+        <p class="rate">⭐ 3.4</p>
+    </div>
+     <p class="name">Perfume Oil</p>
+   <div class="text">
+      <p class="price">$12</p>
+    <p class="stock"> ● instock</p>
+   
+   </div>
+      <button>View Details</button>
+</div>
+                    </div>
+                </div>
+             </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

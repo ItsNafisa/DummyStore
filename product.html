@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+     <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #f8fafc;">
+   <div id="productContainer"></div>
+   <script>
+    function changeMainImage(imgUrl) {
+    const mainImg = document.getElementById('mainImg');
+    if (mainImg) {
+        mainImg.src = imgUrl;
+    }
+}
+
+    function getProductData(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const productID = urlParams.get('id');
+    if (!productID) {
+        console.warn("No product specified in the URL!");
+        return;
+    }
+     fetch(`https://dummyjson.com/products/${productID}`)
+        .then(res => {
+            if (!res.ok) {
+     throw new Error(`Server error: ${res.status}`);
+    }
+     
+    return res.json();
+        })
+        .then((data) => {
+            console.log("Product is ", data);
+document.getElementById("productContainer").innerHTML=`
+ <div class="container">
+     <div class="sectionOne">
+        <div class="image">
+            <img src="${data.images[0]}" id="mainImg">
+               <span class="badge-discount">${data.discountPercentage}%</span>
+        </div>
+        <div class="data">
+            <div class="head">
+                <p>${data.brand ? data.brand : "No Data"} • ${data.category}</p>
+            </div>
+            <div class="name">
+               ${data.title}
+            </div>
+            <div class="sm">SKU: ${data.sku}</div>
+            <div class="rate-stock">
+                <span class="rate">⭐ ${data.rating} / 5</span>
+                <span style="margin: 0 6px;color: #777;">|</span>
+                <span class="stock">   ● ${data.availabilityStatus} (5 left)</span>
+            </div>
+            <div class="price">
+                <p class="new">\$${data.price}</p>
+                <p class="old">$66.76</p>
+            </div>
+            <div class="desc">
+                <p>${data.description}</p>
+            </div>
+            <div class="cart">
+                <p>Min Order:<span> ${data.minimumOrderQuantity} units</span></p>
+                <button>🛒 Add to Cart</button>
+            </div>
+        </div>    
+    </div>
+    <div class="sectiontwo">
+        <div class="images">
+          ${data.images.map(imgUrl => `<img src="${imgUrl}" alt="" onclick="changeMainImage('${imgUrl}')" style="cursor: pointer;">`).join('')}
+          
+        </div>
+        <div class="text">
+<p>🚚 ${data.shippingInformation}</p>
+<p>🛡️ ${data.warrantyInformation}</p>
+<p>🔄 ${data.returnPolicy}</p>
+        </div>
+    </div>
+    <div class="spec-reviw">
+        <div class="specification">
+            <h3>Product Specifications</h3>
+            <ul>
+                <li> <span>Weight:</span> ${data.weight} kg</li>
+                <li><span>Dimensions:</span>  ${data.dimensions.width} x ${data.dimensions.height} cm</li>
+                <li><span> Category:</span> ${data.category}</li>
+                <li><span>Barcode:</span>  ${data.meta.barcode}</li>
+            </ul>
+        </div>
+        <div class="review">
+            <h3>Customer Reviews (${data.reviews.length})</h3>
+          <div class="boxs">
+         ${data.reviews.map(function(e) {
+    return `
+    <div class="box">
+        <div class="head">
+            <p style="font-weight: bold;font-size: 14px;">${e.reviewerName}</p>
+            <p>${'⭐'.repeat(e.rating)}</p>
+        </div>
+        <div class="name">"${e.comment}"</div>
+        <div class="date">${new Date(e.date).toLocaleDateString()}</div>
+    </div>
+    `;
+}).join('')}
+            
+          
+          </div>
+        </div>
+    </div>
+   </div>
+`
+        })
+        .catch(err => {
+            console.error("Error fetching products:", err);
+
+    document.querySelector(".container").innerHTML = `
+        <div style="
+            background:white;
+            padding:30px;
+            text-align:center;
+            border-radius:8px;
+            color:#e53e3e;
+        ">
+            ⚠️ Failed to load product. Please check your connection.
+        </div>
+    `;
+        });
+    }
+    getProductData();
+   </script>
+</body>
+</html>

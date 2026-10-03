@@ -1,0 +1,726 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+    font-family: 'Raleway', sans-serif;
+    min-height: 100vh;
+  
+}
+.container{
+    
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    position: relative;
+}
+
+@media(min-width:768px){
+   
+.container{
+    width: 750px;
+}
+}
+
+@media(min-width:992px){
+ 
+.container{
+    width: 970px;
+}
+
+}
+@media(min-width:1200px){
+.container{
+    width: 1170px;
+}
+}
+
+nav{
+    background-color: white;
+}
+nav .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav .container .logo{
+    color: teal;
+    font-size: 25px;
+    font-weight: bold;
+}
+.content{
+    background-color: #e2e8f0;
+    margin-top: 20px;
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
+.content .container{
+    display: flex;
+    gap: 3%;
+}
+.content .container .search{
+      margin-top: 20px;
+width: 77%;
+}
+.content .container .search input{
+    width: 100%;
+    padding: 14px 0;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+.content .container .search input::placeholder{
+    padding-left: 12px;
+    letter-spacing: 2px;
+}
+.content .container .sort{
+width: 20%;
+  margin-top: 20px;
+}
+.content .container .sort select{
+    width: 100%;
+    padding: 14px 0;
+     border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+@media (max-width:800px) {
+    .content .container{
+        flex-direction: column;
+    }
+    .content .container .search,.content .container .sort{
+        width: 100%;
+    }
+}
+/* categories */
+.content .categories{
+    margin-top: 20px;
+}
+.content .categories ul{
+list-style: none;
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: 8px;
+}
+.content .categories ul li{
+    background-color: rgb(216, 214, 214);
+    padding: 6px 22px;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all .4s;
+}
+.content .categories ul li:hover{
+    background-color: teal;
+    color: white;
+}
+
+.content .categories ul li.loader {
+    background-color: transparent;
+    color: teal;
+    font-weight: bold;
+    cursor: default;
+}
+
+
+.content .categories ul li.error-msg {
+    background-color: #fed7d7;
+    color: #9b2c2c;
+    border: 1px solid #feb2b2;
+    cursor: default;
+}
+
+
+.content .categories ul li.loader:hover,
+.content .categories ul li.error-msg:hover {
+    background-color: inherit;
+    color: inherit;
+}
+/* products */
+.products{
+    margin-top: 30px;
+}
+.products .boxs{
+    display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+.products .boxs .box{
+    background-color: white;
+    transition: all .3s;
+}
+.products .boxs .box img{
+    width: 100%;
+      object-fit: cover;
+}
+.products .boxs .box .brand-and-rate{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+      margin-left: 20px;
+      margin-right: 20px;
+      font-size: 14px;
+      margin-top: 5px;
+      margin-bottom: 9px;
+}
+.products .boxs .box .brand-and-rate .brand{
+ color: #718096;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.products .boxs .box .brand-and-rate .rate{
+color: #d69e2e;
+    font-weight: bold;
+}
+.products .boxs .box .text{
+    margin-left: 20px;
+      margin-right: 20px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.products .boxs .box .text .price{
+color: teal;
+font-weight: bold;
+letter-spacing: 1px;
+font-size: 17px;
+}
+.products .boxs .box .text .stock{
+ font-size: 12px;
+    font-weight: 600;
+}
+.products .boxs .box .text .stock-status.in-stock {
+    color: #2f855a; 
+}
+
+.products .boxs .box .text .stock-status.out-stock {
+    color: #c53030; 
+}
+.products .boxs .box  .name{
+       margin-left: 20px;
+      margin-right: 20px;
+       font-weight: 600;
+    font-size: 16px;
+    color: #2d3748;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.products .boxs .box  a{
+    display: block;
+    margin-top: 11px;
+    outline: 0;
+    border: 0;
+    color: white;
+    width: 85%;
+    background-color: #2d3748;
+    padding: 9px 0;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+     margin-left: auto;
+      margin-right: auto;
+      text-decoration: none;
+      text-align: center;
+}
+.products .boxs .box:hover{
+    transform: translateY(-10px);
+}
+@media (max-width:800px) {
+    .content .categories ul{
+flex-wrap: wrap;
+}
+nav .container .logo{
+    font-size: 20px;
+}
+}
+
+/* category style */
+.category-header .back-btn{
+    color: teal;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 20px 0;
+}
+.category-title{
+    margin-top: 20px;
+    font-size: 27px;
+}
+.category-title span{
+    color: teal;
+}
+
+.products .boxs .box .discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e53e3e;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+/* show product page style */
+.sectionOne {
+    display: flex;
+    gap: 5%;
+    background-color: white;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.sectionOne .image {
+    width: 47%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f7fafc;
+    border: 1px solid #edf2f7;
+}
+
+.sectionOne .data {
+    width: 47%;
+}
+
+.sectionOne img {
+    width: 100%;
+    height: 380px;
+    object-fit: contain;
+    display: block;
+}
+
+.sectionOne .image span {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #e53e3e;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.sectionOne .data .head p {
+    color: teal;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.sectionOne .data .name {
+    margin-top: 15px;
+    color: black;
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 1.3;
+}
+
+.sectionOne .data .sm {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #777;
+    font-weight: bold;
+}
+
+.sectionOne .data .rate-stock {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.sectionOne .data .rate-stock .rate {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.sectionOne .data .rate-stock .stock {
+    color: orange;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.sectionOne .data .price {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sectionOne .data .price p {
+    margin: 0;
+}
+
+.sectionOne .data .price .new {
+    color: teal;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.sectionOne .data .price .old {
+    color: #777;
+    text-decoration: line-through;
+}
+
+.sectionOne .data .desc {
+    margin-top: 15px;
+}
+
+.sectionOne .data .desc p {
+    color: #4a5568;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.sectionOne .data .cart {
+    margin-top: 15px;
+    background-color: #f7fafc;
+    display: flex;
+    align-items: center;
+    gap: 4%;
+    padding: 12px;
+}
+
+.sectionOne .data .cart p {
+    color: #4a5568;
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.sectionOne .data .cart span {
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.sectionOne .data button {
+    color: white;
+    background-color: teal;
+    border: 0;
+    outline: 0;
+    width: 70%;
+    padding: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sectionOne .data button:hover {
+    background-color: #006b6b;
+}
+
+/* =========================
+   Images & Shipping Section
+========================= */
+
+.sectiontwo {
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    gap: 5%;
+}
+
+.sectiontwo .images {
+    width: 47%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.sectiontwo .text {
+    width: 47%;
+    margin-top: 10px;
+}
+
+.sectiontwo .images img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 0;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.sectiontwo .images img:hover {
+    border: 2px solid indigo;
+}
+
+.sectiontwo .text p {
+    font-size: 14px;
+    color: #4a5568;
+    margin-top: 10px;
+}
+
+.spec-reviw {
+    display: flex;
+    gap: 10%;
+    padding: 20px;
+    background-color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.spec-reviw .specification {
+    width: 30%;
+}
+
+.spec-reviw .review {
+    width: 60%;
+}
+
+.spec-reviw .specification ul {
+    list-style: none;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.spec-reviw .specification ul li {
+    padding: 15px 0;
+    line-height: 1.5;
+}
+
+.spec-reviw .specification ul li span {
+    font-weight: bold;
+}
+
+.spec-reviw .review .boxs {
+    margin-top: 20px;
+}
+
+.spec-reviw .review .boxs .box {
+    background-color: #f7fafc;
+    margin-bottom: 12px;
+    padding: 23px;
+    border-radius: 6px;
+}
+
+.spec-reviw .review .boxs .box .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.spec-reviw .review .boxs .box .head p {
+    margin: 0;
+}
+
+.spec-reviw .review .boxs .box .name {
+    margin-top: 8px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.spec-reviw .review .boxs .box .date {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #777;
+}
+@media (max-width: 900px) {
+
+    .container {
+        width: 94%;
+    }
+
+    .sectionOne {
+        gap: 30px;
+    }
+
+    .sectionOne .image,
+    .sectionOne .data {
+        width: 50%;
+    }
+
+    .sectionOne img {
+        height: 320px;
+    }
+
+    .sectionOne .data .name {
+        font-size: 21px;
+    }
+
+    .sectionOne .data .cart {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .sectionOne .data button {
+        width: 100%;
+    }
+
+    .spec-reviw {
+        gap: 5%;
+    }
+
+    .spec-reviw .specification {
+        width: 35%;
+    }
+
+    .spec-reviw .review {
+        width: 60%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+    }
+
+
+    .sectionOne {
+        flex-direction: column;
+        gap: 20px;
+        padding: 12px;
+    }
+
+    .sectionOne .image,
+    .sectionOne .data {
+        width: 100%;
+    }
+
+    .sectionOne img {
+        height: 300px;
+    }
+
+    .sectionOne .image span {
+        top: 10px;
+        left: 10px;
+    }
+
+    .sectionOne .data .name {
+        font-size: 20px;
+    }
+
+    .sectionOne .data .rate-stock {
+        gap: 5px;
+    }
+
+    .sectionOne .data .price .new {
+        font-size: 25px;
+    }
+
+    .sectionOne .data .desc p {
+        font-size: 14px;
+    }
+
+    .sectionOne .data .cart {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .sectionOne .data .cart p {
+        white-space: normal;
+    }
+
+    .sectionOne .data button {
+        width: 100%;
+    }
+
+    /* Images + shipping */
+
+    .sectiontwo {
+        flex-direction: column;
+        gap: 20px;
+        padding: 12px;
+    }
+
+    .sectiontwo .images,
+    .sectiontwo .text {
+        width: 100%;
+    }
+
+    .sectiontwo .images {
+        gap: 8px;
+    }
+
+    .sectiontwo .images img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .sectiontwo .text {
+        margin-top: 0;
+    }
+
+    /* Specifications + reviews */
+
+    .spec-reviw {
+        flex-direction: column;
+        gap: 25px;
+        padding: 12px;
+        margin-top: 20px;
+    }
+
+    .spec-reviw .specification,
+    .spec-reviw .review {
+        width: 100%;
+    }
+
+    .spec-reviw .specification ul li {
+        padding: 12px 0;
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+    .spec-reviw .review .boxs .box {
+        padding: 15px;
+    }
+
+    .spec-reviw .review .boxs .box .head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .container {
+        width: 96%;
+    }
+
+    .sectionOne img {
+        height: 250px;
+    }
+
+    .sectionOne .data .name {
+        font-size: 18px;
+    }
+
+    .sectionOne .data .rate-stock .rate,
+    .sectionOne .data .rate-stock .stock {
+        font-size: 13px;
+    }
+
+    .sectiontwo .images img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .spec-reviw .review .boxs .box {
+        padding: 12px;
+    }
+}

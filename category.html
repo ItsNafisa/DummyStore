@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="style.css">
+    <title>Smartphones - Dummystore</title>
+</head>
+<body>
+     <nav>
+        <div class="container">
+            <div class="logo">
+                🛍️ DummyStore
+            </div>
+            <div class="cart">
+                🛒 cart (0)
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+          <div class="container">
+            <div class="category-header">
+                <a href="index.html" class="back-btn">← Back to All Products</a>
+                <h1 class="category-title">Category: <span id="category-name">Smartphones</span></h1>
+            </div>
+          </div>
+
+              <!-- search and sort -->
+            <div class="container">
+                <form class="search">
+                    <input type="text" placeholder="🔍 Search in smartphones..." onkeyup="searchProduct(this.value)">
+                </form>
+                <form class="sort" >
+                    <select onchange="handleSort(this.value)">
+                     <option value="">Default Sorting</option>
+        
+        <!-- Price -->
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        
+        <!-- Rating -->
+        <option value="rating-desc">Top Rated (Highest First)</option>
+        <option value="rating-asc">Lowest Rated</option>
+        
+        <!-- Title / Name -->
+        <option value="title-asc">Title: A to Z</option>
+        <option value="title-desc">Title: Z to A</option>
+        
+        <!-- Discount -->
+        <option value="discountPercentage-desc">Highest Discount</option>
+        
+        <!-- Brand -->
+        <option value="brand-asc">Brand: A to Z</option>
+
+        <!-- Stock -->
+        <option value="stock-desc">Highest Stock</option>
+                    </select>
+                </form>
+            </div>
+
+                <!-- products -->
+             <div class="products">
+                <div class="container">
+                    <div class="boxs">
+<div class="box">
+    <img src="imgs/img4.jpg">
+   <div class="text">
+     <p class="name">Perfume Oil</p>
+     <p class="price">$12</p>
+     <button>View Details</button>
+   </div>
+</div>
+<div class="box">
+    <img src="imgs/img4.jpg">
+     <div class="text">
+     <p class="name">Perfume Oil</p>
+     <p class="price">$12</p>
+     <button>View Details</button>
+   </div>
+</div>
+<div class="box">
+   <img src="imgs/img4.jpg">
+   <div class="text">
+     <p class="name">Perfume Oil</p>
+     <p class="price">$12</p>
+     <button>View Details</button>
+   </div>
+</div>
+<div class="box">
+     <img src="imgs/img4.jpg">
+     <div class="text">
+     <p class="name">Perfume Oil</p>
+     <p class="price">$12</p>
+     <button>View Details</button>
+   </div>
+</div>
+<div class="box">
+     <img src="imgs/img4.jpg">
+     <div class="text">
+     <p class="name">Perfume Oil</p>
+     <p class="price">$12</p>
+     <button>View Details</button>
+   </div>
+</div>
+<div class="box">
+     <img src="imgs/img4.jpg">
+     <div class="text">
+     <p class="name">Perfume Oil</p>
+     <p class="price">$12</p>
+     <button>View Details</button>
+   </div>
+</div>
+<div class="box">
+     <img src="imgs/img4.jpg">
+     <div class="text">
+     <p class="name">Perfume Oil</p>
+     <p class="price">$12</p>
+     <button>View Details</button>
+   </div>
+</div>
+                    </div>
+                </div>
+             </div>
+
+    </div>
+    <script>
+        let boxs=document.querySelector('.products .boxs');
+        let box='';
+        let allProducts;
+        function getCategoryData() {
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    const categorySlug = urlParams.get('cat');
+
+    if (!categorySlug) {
+        console.warn("No category specified in the URL!");
+        return;
+    }
+
+    document.getElementById('category-name').textContent = categorySlug;
+    document.querySelector('.search input').placeholder = `🔍 Search in ${categorySlug}...`;
+
+     boxs.innerHTML = `<li class="loader">Loading products...</li>`;
+    fetch(`https://dummyjson.com/products/category/${categorySlug}`)
+        .then(res => {
+            if (!res.ok) {
+     throw new Error(`Server error: ${res.status}`);
+    }
+     
+    return res.json();
+        })
+        .then((data) => {
+
+            console.log("Products for this category:", data.products);
+            let products=data.products;
+            boxs.innerHTML='';
+            allProducts=products;
+            products.forEach(element => {
+       box += `     
+        <div class="box">
+    <img src="${element.images[0]}" alt="${element.title}">
+    <div class="brand-and-rate">
+       <p class="brand">${element.brand ? element.brand : 'No Data'}</p>
+        <p class="rate">⭐ ${element.rating.toFixed(1)}</p>
+    </div>
+     <p class="name">${element.title}</p>
+   <div class="text">
+      <p class="price">$${element.price}</p>
+    <p class="stock stock-status ${element.stock > 0 ? 'in-stock' : 'out-stock'}"> ● ${element.availabilityStatus || 'In Stock'}</p>
+   
+   </div>
+   
+      <a href="product.html?id=${element.id}" class="view-btn">View Details</a>
+</div>
+        
+        `
+               
+            });
+            boxs.innerHTML=box;
+        })
+        .catch(err => {
+             console.error("Error fetching products:", err);
+             productLists.innerHTML = `<li class="error-msg">⚠️ Failed to load products. Please check your connection.</li>`;
+        });
+}
+
+getCategoryData();
+
+//search
+function searchProduct(valueToSearchFor){
+    console.log(allProducts);
+    const query = valueToSearchFor.trim().toLowerCase();
+
+    const filteredProducts = allProducts.filter(product => {
+      
+        const productName = (product.title || '').toLowerCase();
+        const productBrand = (product.brand || '').toLowerCase();
+        return productName.includes(query) || productBrand.includes(query);
+    });
+
+       boxs.innerHTML='';
+if (filteredProducts.length === 0) {
+        boxs.innerHTML = `<li class="error-msg">⚠️ No products available.</li>`;
+        return;
+    }
+    let box = '';
+      filteredProducts.forEach(element => {
+       box += `     
+        <div class="box">
+    <img src="${element.images[0]}" alt="${element.title}">
+    <div class="brand-and-rate">
+       <p class="brand">${element.brand ? element.brand : 'No Data'}</p>
+        <p class="rate">⭐ ${element.rating.toFixed(1)}</p>
+    </div>
+     <p class="name">${element.title}</p>
+   <div class="text">
+      <p class="price">$${element.price}</p>
+    <p class="stock stock-status ${element.stock > 0 ? 'in-stock' : 'out-stock'}"> ● ${element.availabilityStatus || 'In Stock'}</p>
+   
+   </div>
+   
+      <a href="product.html?id=${element.id}" class="view-btn">View Details</a>
+</div>
+        
+        `
+               
+            });
+            boxs.innerHTML=box;
+}
+
+//sort
+function handleSort(selectedValue) {
+    if (!selectedValue) {
+        renderProducts(allProducts);
+        return;
+    }
+
+    const [sortBy, order] = selectedValue.split('-');
+
+    // عمل نسخة مرتبة من العناصر
+    const sortedProducts = [...allProducts].sort((a, b) => {
+        let valA = a[sortBy] ?? '';
+        let valB = b[sortBy] ?? '';
+
+        // ترتيب النصوص (مثل Title و Brand)
+        if (typeof valA === 'string') {
+            return order === 'asc' 
+                ? valA.localeCompare(valB) 
+                : valB.localeCompare(valA);
+        }
+
+        // ترتيب الأرقام (مثل Price, Rating, Stock, Discount)
+        return order === 'asc' ? valA - valB : valB - valA;
+    });
+
+      boxs.innerHTML='';
+       let box = '';
+      sortedProducts.forEach(element => {
+       box += `     
+        <div class="box">
+    <img src="${element.images[0]}" alt="${element.title}">
+    <div class="brand-and-rate">
+       <p class="brand">${element.brand ? element.brand : 'No Data'}</p>
+        <p class="rate">⭐ ${element.rating.toFixed(1)}</p>
+    </div>
+     <p class="name">${element.title}</p>
+   <div class="text">
+      <p class="price">$${element.price}</p>
+    <p class="stock stock-status ${element.stock > 0 ? 'in-stock' : 'out-stock'}"> ● ${element.availabilityStatus || 'In Stock'}</p>
+   
+   </div>
+   
+      <a href="product.html?id=${element.id}" class="view-btn">View Details</a>
+</div>
+        
+        `
+               
+            });
+            boxs.innerHTML=box;
+}
+    </script>
+</body>
+</html>
