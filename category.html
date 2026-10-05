@@ -140,7 +140,7 @@
 
     document.getElementById('category-name').textContent = categorySlug;
     document.querySelector('.search input').placeholder = `🔍 Search in ${categorySlug}...`;
-
+document.title =categorySlug + " - Dummystore";
      boxs.innerHTML = `<li class="loader">Loading products...</li>`;
     fetch(`https://dummyjson.com/products/category/${categorySlug}`)
         .then(res => {

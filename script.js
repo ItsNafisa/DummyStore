@@ -15,7 +15,8 @@ function getAllCategoriesName() {
     
     )
         .then((categories) => {
-            categoryList.innerHTML = '<li class="active" data-category="all">ALL</li>';
+            // categoryList.innerHTML = '<li class="active" data-category="all">ALL</li>';
+             categoryList.innerHTML =" ";
             categories.forEach(element => {
                 let li = document.createElement('li');
                 
